@@ -1,19 +1,15 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using LibraryManagementSystem.Contracts.Entities;
 
 namespace LibraryManagementSystem.Models
 {
-    public class Book
+    public class Book: BaseEntity
     {
-        [Key]
-        public int BookId { get; set; } = default!;
-
-        [Required]
         [MaxLength(200)]
         public string Title { get; set; } = default!;
-
-        [MaxLength(13)]
+ 
         public string ISBN { get; set; } = default!;
 
         [Required]
@@ -27,9 +23,8 @@ namespace LibraryManagementSystem.Models
 
         [ForeignKey("CategoryId")]
         public Category Category { get; set; } = default!;
-
-        [MaxLength(100)]
-        public string Publisher { get; set; } = default!;
+ 
+        public int PublishedYear { get; set; } = default!;
 
         public int YearPublished { get; set; }
 
@@ -38,11 +33,7 @@ namespace LibraryManagementSystem.Models
         public int AvailableCopies { get; set; }
 
      //   public string CoverImageUrl { get; set; } = default!;
+ 
 
-        public bool IsActive { get; set; } = true;
-
-        public DateTime DateCreated { get; set; } = DateTime.Now;
-
-        public DateTime? DateUpdated { get; set; }
     }
 }
